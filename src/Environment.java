@@ -19,12 +19,9 @@ public class Environment {
             for (int i = 0; i < Row; i++) {
                Rectangle rec = new Rectangle(i,j, landPlot,
                 landPlot);
-                rec.setPosition(i*landPlot+70*i,j*landPlot+70*j);
+                rec.setPosition(i*landPlot+70*i+5,j*landPlot+70*j);
                 rec.setFillColor(new Color(139,69,19));
                 lands.add(rec);
-              
-             
-             
             }
         }
     }
