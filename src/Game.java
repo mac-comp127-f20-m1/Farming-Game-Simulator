@@ -25,10 +25,10 @@ public class Game {
         canvas=new CanvasWindow("JRL Farm", 880, 1000);
         
         // Image grass = new Image(0, 0, "grass.png");
-        // grass.setMaxHeight(1000);
-        // grass.setMaxWidth(880);
+        // grass.set(1000);
+        // grass.setWidth(880);
         // graphics.add(grass);
-        //  canvas.add(graphics);
+        // canvas.add(graphics);
 
         character=new Character();
         environment=new Environment();
@@ -62,7 +62,6 @@ public class Game {
         label.setFont(FontStyle.BOLD,10);
         label.setFillColor(Color.WHITE);
         label.setCenter(815,120);
-        System.out.println("is this working");
 
     }
 
@@ -78,6 +77,6 @@ public class Game {
         } 
         if(event.getKey() == Key.LEFT_ARROW){
             character.moveX(-10);
-        }      
+        }
     }
 }

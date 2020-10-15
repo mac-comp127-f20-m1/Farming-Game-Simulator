@@ -9,51 +9,48 @@ import java.awt.Color;
 
 
 public class Environment {
-    private double landPlot=200;
-    private int Row = 3, brickColumn = 3, buffer=5;
-    private List<Rectangle> lands = new ArrayList<Rectangle>();
+    private double landPlotSize = 200;
+    private int row = 3, buffer = 20;
+    private List<LandPlot> lands = new ArrayList<LandPlot>();
 
     public Environment() {
-        for (int j = 0; j < Row; j++) {
+        for (int j = 0; j < row; j++) {
 
-            for (int i = 0; i < Row; i++) {
-               Rectangle rec = new Rectangle(i,j, landPlot,
-                landPlot);
-                rec.setPosition(i*landPlot+70*i+buffer,j*landPlot+70*j);
-                rec.setFillColor(new Color(139,69,19));
-                lands.add(rec);
-                rec.setStrokeColor(Color.red);
-                rec.setStrokeWidth(5);
-                
+            for (int i = 0; i < row; i++) {
+                lands.add(
+                    new LandPlot(
+                        i * landPlotSize + 70 * i + buffer,
+                        j * landPlotSize + 70 * j + buffer,
+                        landPlotSize,
+                        landPlotSize));
             }
         }
-        
+
     }
 
-    public void unLock() {
-        for (Rectangle b : lands) {
-            b.setStrokeColor(Color.red);
-        }
-        
-    }
 
-   
-
-    public List<Rectangle> getLands() {
+    public List<LandPlot> getLands() {
         return lands;
     }
 
-    
+
     public void addToCanvas(CanvasWindow canvas) {
-        for (Rectangle b : lands) {
+        for (LandPlot b : lands) {
             canvas.add(b);
         }
     }
 
-    public void setColor(Rectangle rec){
+    public void setColor(LandPlot rec) {
 
     }
 
-    
-}
+    // You might do something like this:
 
+    // public boolean canCharacterMoveTo(Point pos) {
+    //     if (pos is out of bounds) {
+    //         return false;
+    //     }
+    //     LandPlot land = getLandAt(pos);
+    //     return land == null || !land.isLocked();
+    // }
+}
