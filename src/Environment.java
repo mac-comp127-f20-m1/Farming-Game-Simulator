@@ -9,9 +9,9 @@ import java.awt.Color;
 
 
 public class Environment {
-    private double landPlot=250;
+    private double landPlot=200;
     private int Row = 3, brickColumn = 3, buffer=5;
-    private List<GraphicsObject> lands = new ArrayList<GraphicsObject>();
+    private List<Rectangle> lands = new ArrayList<Rectangle>();
 
     public Environment() {
         for (int j = 0; j < Row; j++) {
@@ -22,33 +22,30 @@ public class Environment {
                 rec.setPosition(i*landPlot+70*i+buffer,j*landPlot+70*j);
                 rec.setFillColor(new Color(139,69,19));
                 lands.add(rec);
+                rec.setStrokeColor(Color.red);
+                rec.setStrokeWidth(5);
                 
             }
         }
+        
     }
 
-    // // public void createBrickWall(){
-
-    //     for (int y=100;y<=350;y+=25){
-    //         double x=5;
-    //         for (int j=0;j<10;j++){
-    //             Brick brick= new Brick(x, y, 50, 20);
-    //             brick.addToCanvas(window);
-                
-    //             // bricks.add(brick);
-    //             x+=60;
-    //         }
-    //     } 
+    public void unLock() {
+        for (Rectangle b : lands) {
+            b.setStrokeColor(Color.red);
+        }
+        
+    }
 
    
 
-    public List<GraphicsObject> getLands() {
+    public List<Rectangle> getLands() {
         return lands;
     }
 
     
     public void addToCanvas(CanvasWindow canvas) {
-        for (GraphicsObject b : lands) {
+        for (Rectangle b : lands) {
             canvas.add(b);
         }
     }
