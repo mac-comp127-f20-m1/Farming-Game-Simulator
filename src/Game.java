@@ -59,7 +59,7 @@ public class Game {
         button.setCenter(815, 120);
         button.setFillColor(Color.RED);
         label.setText("Next Day");       
-        label.setFont(FontStyle.BOLD,10);
+        label.setFont(FontStyle.BOLD, 15);
         label.setFillColor(Color.WHITE);
         label.setCenter(815,120);
 

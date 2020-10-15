@@ -27,8 +27,8 @@ public class Currency {
         button = new Rectangle(0, 0, 80, 30);
         button.setCenter(815, 80);
         button.setFillColor(new Color(156, 195, 230));
-        label.setText("Coins:"+money);       
-        label.setFont(FontStyle.BOLD,10);
+        label.setText("Coins: "+money);       
+        label.setFont(FontStyle.BOLD, 15);
         label.setFillColor(Color.WHITE);
         label.setCenter(815,80);
 
