@@ -10,7 +10,7 @@ import java.awt.Color;
 
 public class Environment {
     private double landPlot=250;
-    private int Row = 3, brickColumn = 3;
+    private int Row = 3, brickColumn = 3, buffer=5;
     private List<GraphicsObject> lands = new ArrayList<GraphicsObject>();
 
     public Environment() {
@@ -19,9 +19,10 @@ public class Environment {
             for (int i = 0; i < Row; i++) {
                Rectangle rec = new Rectangle(i,j, landPlot,
                 landPlot);
-                rec.setPosition(i*landPlot+70*i+5,j*landPlot+70*j);
+                rec.setPosition(i*landPlot+70*i+buffer,j*landPlot+70*j);
                 rec.setFillColor(new Color(139,69,19));
                 lands.add(rec);
+                
             }
         }
     }
