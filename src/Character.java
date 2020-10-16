@@ -51,7 +51,6 @@ public class Character {
 
     public void canvasBounds(CanvasWindow canvas){
         double height = canvas.getHeight();
-        double width = canvas.getWidth();
         
         if(pig.getX()+pig.getWidth()>750){
             pig.setX(750-pig.getWidth());
