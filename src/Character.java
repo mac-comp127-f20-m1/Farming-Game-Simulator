@@ -53,18 +53,22 @@ public class Character {
         double height = canvas.getHeight();
         double width = canvas.getWidth();
         
-        if(pig.getX()>width){
-            pig.setX(width-pig.getWidth());
+        if(pig.getX()+pig.getWidth()>750){
+            pig.setX(750-pig.getWidth());
         }
+           
         if (pig.getX()<0){
             pig.setX(0);
+           
         }
-        if (pig.getY()>height){
+        if (pig.getY()+pig.getHeight()>height){
             pig.setY(height-pig.getHeight());
         }
         if (pig.getY()<0){
             pig.setY(0);
+            
         }
+    
     }
     
 

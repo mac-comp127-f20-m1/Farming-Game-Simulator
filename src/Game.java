@@ -22,7 +22,7 @@ public class Game {
   
 
     public Game(){
-        canvas=new CanvasWindow("JRL Farm", 880, 1000);
+        canvas=new CanvasWindow("JRL Farm", 880, 930);
         
         Image grass = new Image(0, 0, "grass.png");
 
@@ -40,7 +40,6 @@ public class Game {
         character.setCenter(250, 250);
         currency.createButton(canvas);
         timeButton();
-        character.canvasBounds(canvas);
         canvas.add(button);
         canvas.add(label);
        
@@ -68,16 +67,17 @@ public class Game {
 
     public void moveCharacter(KeyboardEvent event){
         if(event.getKey() == Key.UP_ARROW){
-            character.moveY(-10);
+            character.moveY(-20);
         }   
         if(event.getKey() == Key.DOWN_ARROW){
-            character.moveY(10);
+            character.moveY(20);
         } 
         if(event.getKey() == Key.RIGHT_ARROW){
-            character.moveX(10);
+            character.moveX(20);
         } 
         if(event.getKey() == Key.LEFT_ARROW){
-            character.moveX(-10);
+            character.moveX(-20);
         }
+        character.canvasBounds(canvas);
     }
 }
