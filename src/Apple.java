@@ -15,8 +15,11 @@ public class Apple implements Plant {
         graphics.add(apple);
     }
 
+    /**
+     * Makes the plant grow larger
+     */
     public void growLarger() {
-        // makes the plant grow larger
+
     }
 
     public boolean maxSize() {
@@ -28,9 +31,15 @@ public class Apple implements Plant {
         return price;
     }
 
+    public void setPostion(double x,double y){
+        graphics.setCenter(x,y);
+    }
+
     public void addToCanvas(CanvasWindow canvas) {
         canvas.add(apple);
     }
+
+
 
     @Override
     public void removeFromCanvas(CanvasWindow canvas) {

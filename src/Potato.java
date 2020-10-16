@@ -32,7 +32,7 @@ public class Potato implements Plant {
         canvas.add(potato);
     }
 
-    public void removeFromCanavas(CanvasWindow canvas) {
+    public void removeFromCanvas(CanvasWindow canvas) {
         canvas.remove(potato);
     }
 }

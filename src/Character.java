@@ -1,5 +1,7 @@
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.macalester.graphics.CanvasWindow;
-import edu.macalester.graphics.Ellipse;
 import edu.macalester.graphics.Image;
 import edu.macalester.graphics.GraphicsGroup;
 
@@ -8,12 +10,8 @@ public class Character {
     // private final GraphicsGroup graphics;
     // private double speed;
     GraphicsGroup graphics = new GraphicsGroup(0, 0);
-    // buildGraphics();
     private Image pig;
-    
-    
-   
-        
+    List<Plant> plants=new ArrayList<>();
     
     public Character(){
         pig = new Image(0, 0, "pig.png");
@@ -21,6 +19,26 @@ public class Character {
         pig.setMaxWidth(80);
         graphics.add(pig);
         
+    }
+
+    /**
+     * Creates a new apple object and adds it to the canvas
+     * at a certain position
+     *  
+     * @param canvas
+     */
+    public void plantApple(CanvasWindow canvas,double x, double y){ 
+        Apple apple = new Apple();
+        apple.setPostion(x, y);
+        plants.add(apple);
+        apple.addToCanvas(canvas);
+    }
+
+    /**
+     * Creates a new orange object
+     */
+    public void plantOrange(){
+        Orange orange = new Orange();
     }
 
     public void addToCanvas(CanvasWindow canvas){

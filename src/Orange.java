@@ -2,17 +2,17 @@ import edu.macalester.graphics.GraphicsGroup;
 import edu.macalester.graphics.Image;
 import edu.macalester.graphics.CanvasWindow;
 
-public class Cabbage implements Plant {
+public class Orange implements Plant {
 
     GraphicsGroup graphics = new GraphicsGroup(0, 0);
     private int price;
-    private Image cabbage;
+    private Image orange;
 
-    public Cabbage() {
-        cabbage = new Image(0, 0, "cabbage.png");
-        cabbage.setMaxHeight(100);
-        cabbage.setMaxWidth(80);
-        graphics.add(cabbage);
+    public Orange() {
+        orange = new Image(0, 0, "orange.png");
+        orange.setMaxWidth(80);
+        orange.setMaxHeight(100);
+        graphics.add(orange);
     }
 
     public void growLarger() {
@@ -29,10 +29,12 @@ public class Cabbage implements Plant {
     }
 
     public void addToCanvas(CanvasWindow canvas) {
-        canvas.add(cabbage);
+        canvas.add(orange);
     }
 
     public void removeFromCanvas(CanvasWindow canvas) {
-        canvas.remove(cabbage);
+        canvas.remove(orange);
     }
 }
+
+

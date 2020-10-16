@@ -40,6 +40,7 @@ public class Game {
         character.setCenter(250, 250);
         currency.createButton(canvas);
         timeButton();
+
         canvas.add(button);
         canvas.add(label);
        
