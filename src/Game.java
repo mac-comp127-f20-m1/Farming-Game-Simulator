@@ -24,11 +24,11 @@ public class Game {
     public Game(){
         canvas=new CanvasWindow("JRL Farm", 880, 1000);
         
-        // Image grass = new Image(0, 0, "grass.png");
-        // grass.set(1000);
-        // grass.setWidth(880);
-        // graphics.add(grass);
-        // canvas.add(graphics);
+        Image grass = new Image(0, 0, "grass.png");
+        // grass.setMaxHeight(20000);
+        // grass.setMaxWidth(20000);
+        graphics.add(grass);
+        canvas.add(graphics);
 
         character=new Character();
         environment=new Environment();
