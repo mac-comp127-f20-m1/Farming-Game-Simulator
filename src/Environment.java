@@ -25,7 +25,9 @@ public class Environment {
                         landPlotSize));
             }
         }
-
+        lands.get(0).unlock();
+        lands.get(1).unlock();
+        lands.get(2).unlock();
     }
 
 

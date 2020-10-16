@@ -25,8 +25,7 @@ public class Game {
         canvas=new CanvasWindow("JRL Farm", 880, 1000);
         
         Image grass = new Image(0, 0, "grass.png");
-        // grass.setMaxHeight(20000);
-        // grass.setMaxWidth(20000);
+
         graphics.add(grass);
         canvas.add(graphics);
 
@@ -38,8 +37,10 @@ public class Game {
 
         environment.addToCanvas(canvas);
         character.addToCanvas(canvas);
+        character.setCenter(250, 250);
         currency.createButton(canvas);
         timeButton();
+        character.canvasBounds(canvas);
         canvas.add(button);
         canvas.add(label);
        
