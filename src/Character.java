@@ -12,12 +12,21 @@ public class Character {
     GraphicsGroup graphics = new GraphicsGroup(0, 0);
     private Image pig;
     List<Plant> plants=new ArrayList<>();
+    private int money = 100;
     
     public Character(){
         pig = new Image(0, 0, "pig.png");
         pig.setMaxHeight(100);
         pig.setMaxWidth(80);
         graphics.add(pig);
+        
+    }
+
+    public int getMoney(){
+        return money;
+    }
+
+    public void harvestApple(){
         
     }
 
@@ -31,7 +40,9 @@ public class Character {
         Apple apple = new Apple();
         apple.setPosition(x, y);
         plants.add(apple);
-        apple.addToCanvas(canvas);        
+        apple.addToCanvas(canvas);  
+        money=money-apple.getPrice();   
+          
     }
 
     /**
@@ -42,6 +53,7 @@ public class Character {
         orange.setPosition(x, y);
         plants.add(orange);
         orange.addToCanvas(canvas);
+        money=money-orange.getPrice();    
     }
 
     /**
@@ -52,6 +64,8 @@ public class Character {
         potato.setPosition(x, y);
         plants.add(potato);
         potato.addToCanvas(canvas);
+        money=money-potato.getPrice();   
+    
     }
 
     /**
@@ -62,6 +76,7 @@ public class Character {
         cabbage.setPosition(x, y);
         plants.add(cabbage);
         cabbage.addToCanvas(canvas);
+        money=money-cabbage.getPrice();   
     }
 
     public void addToCanvas(CanvasWindow canvas){

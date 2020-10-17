@@ -5,7 +5,7 @@ import edu.macalester.graphics.CanvasWindow;
 public class Apple implements Plant {
 
     GraphicsGroup graphics = new GraphicsGroup(0, 0);
-    private int price;
+    private final int price = 10;
     private Image apple;
 
     public Apple() {

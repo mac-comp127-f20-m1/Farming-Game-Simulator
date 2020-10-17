@@ -5,7 +5,7 @@ import edu.macalester.graphics.CanvasWindow;
 public class Potato implements Plant {
 
     GraphicsGroup graphics = new GraphicsGroup(0, 0);
-    private int price;
+    private int price = 5;
     private Image potato;
 
     public Potato() {
