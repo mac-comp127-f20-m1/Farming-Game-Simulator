@@ -68,15 +68,19 @@ public class Game {
         double y = character.getY();
         if(event.getKey() == Key.Q&&canvas.getElementAt(x, y) instanceof LandPlot){
             character.plantApple(canvas, x, y);
+            System.out.println("is this working");
         }
         if(event.getKey() == Key.W && canvas.getElementAt(x, y) instanceof LandPlot){
             character.plantOrange(canvas, x, y);
+            System.out.println("is this working");
         }
         if(event.getKey() == Key.E && canvas.getElementAt(x, y) instanceof LandPlot){
             character.plantPotato(canvas, x, y);
+            System.out.println("is this working");
         }
         if(event.getKey() == Key.R && canvas.getElementAt(x, y) instanceof LandPlot){
             character.plantCabbage(canvas, x, y);
+            System.out.println("is this working");
         }
     }
 
