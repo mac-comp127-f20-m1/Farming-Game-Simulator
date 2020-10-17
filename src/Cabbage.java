@@ -10,8 +10,8 @@ public class Cabbage implements Plant {
 
     public Cabbage() {
         cabbage = new Image(0, 0, "cabbage.png");
-        cabbage.setMaxHeight(100);
-        cabbage.setMaxWidth(80);
+        cabbage.setMaxHeight(50);
+        cabbage.setMaxWidth(40);
         graphics.add(cabbage);
     }
 
@@ -22,6 +22,10 @@ public class Cabbage implements Plant {
     public boolean maxSize() {
         // check if plant is at maximum size
         return true;
+    }
+
+    public void setPosition(double x,double y){
+        cabbage.setCenter(x,y);
     }
 
     public int getPrice() {

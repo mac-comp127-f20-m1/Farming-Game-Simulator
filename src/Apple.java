@@ -10,8 +10,8 @@ public class Apple implements Plant {
 
     public Apple() {
         apple = new Image(0, 0, "apple.png");
-        apple.setMaxHeight(100);
-        apple.setMaxWidth(80);
+        apple.setMaxHeight(50);
+        apple.setMaxWidth(40);
         graphics.add(apple);
     }
 
@@ -31,15 +31,13 @@ public class Apple implements Plant {
         return price;
     }
 
-    public void setPostion(double x,double y){
-        graphics.setCenter(x,y);
+    public void setPosition(double x,double y){
+        apple.setCenter(x,y);
     }
 
     public void addToCanvas(CanvasWindow canvas) {
         canvas.add(apple);
     }
-
-
 
     @Override
     public void removeFromCanvas(CanvasWindow canvas) {

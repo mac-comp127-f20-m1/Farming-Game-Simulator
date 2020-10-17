@@ -10,8 +10,8 @@ public class Orange implements Plant {
 
     public Orange() {
         orange = new Image(0, 0, "orange.png");
-        orange.setMaxWidth(80);
-        orange.setMaxHeight(100);
+        orange.setMaxWidth(40);
+        orange.setMaxHeight(50);
         graphics.add(orange);
     }
 
@@ -22,6 +22,10 @@ public class Orange implements Plant {
     public boolean maxSize() {
         // check if plant is at maximum size
         return true;
+    }
+
+    public void setPosition(double x,double y){
+        orange.setCenter(x,y);
     }
 
     public int getPrice() {

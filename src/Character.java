@@ -29,16 +29,39 @@ public class Character {
      */
     public void plantApple(CanvasWindow canvas,double x, double y){ 
         Apple apple = new Apple();
-        apple.setPostion(x, y);
+        apple.setPosition(x, y);
         plants.add(apple);
-        apple.addToCanvas(canvas);
+        apple.addToCanvas(canvas);        
     }
 
     /**
      * Creates a new orange object
      */
-    public void plantOrange(){
+    public void plantOrange(CanvasWindow canvas,double x, double y){
         Orange orange = new Orange();
+        orange.setPosition(x, y);
+        plants.add(orange);
+        orange.addToCanvas(canvas);
+    }
+
+    /**
+     * Creates a new potato object
+     */
+    public void plantPotato(CanvasWindow canvas,double x, double y){
+        Potato potato = new Potato();
+        potato.setPosition(x, y);
+        plants.add(potato);
+        potato.addToCanvas(canvas);
+    }
+
+    /**
+     * Creates a new cabbage object
+     */
+    public void plantCabbage(CanvasWindow canvas,double x, double y){
+        Cabbage cabbage = new Cabbage();
+        cabbage.setPosition(x, y);
+        plants.add(cabbage);
+        cabbage.addToCanvas(canvas);
     }
 
     public void addToCanvas(CanvasWindow canvas){

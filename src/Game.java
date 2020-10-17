@@ -44,7 +44,11 @@ public class Game {
         canvas.add(button);
         canvas.add(label);
        
-        canvas.onKeyDown(event -> moveCharacter(event));
+        canvas.onKeyDown(event -> {
+            moveCharacter(event);
+            plant(event);
+        });
+
         
 
     }
@@ -62,6 +66,23 @@ public class Game {
         label.setFillColor(Color.WHITE);
         label.setCenter(815,120);
 
+    }
+
+    public void plant(KeyboardEvent event){
+        double x = character.getX();
+        double y = character.getY();
+        if(event.getKey() == Key.Q){
+            character.plantApple(canvas, x, y);
+        }
+        if(event.getKey() == Key.W){
+            character.plantOrange(canvas, x, y);
+        }
+        if(event.getKey() == Key.E){
+            character.plantPotato(canvas, x, y);
+        }
+        if(event.getKey() == Key.R){
+            character.plantCabbage(canvas, x, y);
+        }
     }
 
     public void moveCharacter(KeyboardEvent event){

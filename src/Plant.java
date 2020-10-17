@@ -5,6 +5,7 @@ public interface Plant {
     void growLarger();
     boolean maxSize();
     int getPrice();
+    void setPosition(double x, double y);
     void addToCanvas(CanvasWindow canvas);
     void removeFromCanvas(CanvasWindow canvas);
 

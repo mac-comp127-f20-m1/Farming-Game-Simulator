@@ -10,8 +10,8 @@ public class Potato implements Plant {
 
     public Potato() {
         potato = new Image(0, 0, "potato.png");
-        potato.setMaxHeight(100);
-        potato.setMaxWidth(80);
+        potato.setMaxHeight(50);
+        potato.setMaxWidth(40);
         graphics.add(potato);
     }
 
@@ -22,6 +22,10 @@ public class Potato implements Plant {
     public boolean maxSize() {
         // check if plant is at maximum size
         return true;
+    }
+
+    public void setPosition(double x,double y){
+        potato.setCenter(x,y);
     }
 
     public int getPrice() {
