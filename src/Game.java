@@ -33,8 +33,6 @@ public class Game {
         environment=new Environment();
         currency = new Currency();
 
-        
-
         environment.addToCanvas(canvas);
         character.addToCanvas(canvas);
         character.setCenter(250, 250);
@@ -48,9 +46,6 @@ public class Game {
             moveCharacter(event);
             plant(event);
         });
-
-        
-
     }
 
     public static void main(String[] args) {
@@ -71,16 +66,16 @@ public class Game {
     public void plant(KeyboardEvent event){
         double x = character.getX();
         double y = character.getY();
-        if(event.getKey() == Key.Q){
+        if(event.getKey() == Key.Q&&canvas.getElementAt(x, y) instanceof LandPlot){
             character.plantApple(canvas, x, y);
         }
-        if(event.getKey() == Key.W){
+        if(event.getKey() == Key.W && canvas.getElementAt(x, y) instanceof LandPlot){
             character.plantOrange(canvas, x, y);
         }
-        if(event.getKey() == Key.E){
+        if(event.getKey() == Key.E && canvas.getElementAt(x, y) instanceof LandPlot){
             character.plantPotato(canvas, x, y);
         }
-        if(event.getKey() == Key.R){
+        if(event.getKey() == Key.R && canvas.getElementAt(x, y) instanceof LandPlot){
             character.plantCabbage(canvas, x, y);
         }
     }
