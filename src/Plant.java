@@ -1,40 +1,47 @@
 import edu.macalester.graphics.CanvasWindow;
+import edu.macalester.graphics.GraphicsGroup;
+import edu.macalester.graphics.Image;
 
-public interface Plant {
+public class Plant {
 
-    void growLarger();
-    boolean maxSize();
-    int getPrice();
-    void setPosition(double x, double y);
-    void addToCanvas(CanvasWindow canvas);
-    void removeFromCanvas(CanvasWindow canvas);
+    // GraphicsGroup graphics = new GraphicsGroup(0, 0);
+    private final int price;
+    private Image plant;
 
-    // Ellipse plant;
-    // private int price;
+    public Plant(String image, int price) {
+        plant = new Image(0, 0, image);
+        this.price = price;
+        plant.setMaxHeight(50);
+        plant.setMaxWidth(40);
+        // graphics.add(plant);
+        plant.setRotation(Math.random()*30-15);
+    }
 
-    // public Plant(Color color, double x, double y, int price){
-    //     plant = new Ellipse(x, y, 10, 10);
-    //     this.price=price;
-    // }
-    
-    // public void growLarger(){
-    //     //makes the plant grow larger
-    // }
+    /**
+     * Makes the plant grow larger
+     */
+    public void growLarger() {
 
-    // public boolean maxSize(){
-    //     //check if plant is at maximum size
-    //     return true;
-    // }
+    }
 
-    // public int getPrice() {
-    //     return price;
-    // }
+    public boolean maxSize() {
+        // check if plant is at maximum size
+        return true;
+    }
 
-    // public void addToCanvas(CanvasWindow canvas){
-    //     canvas.add(plant);
-    // }
+    public int getPrice() {
+        return price;
+    }
 
-    // public void removeFromCanvas(CanvasWindow canvas){
-    //     canvas.remove(plant);
-    // }
+    public void setPosition(double x,double y){
+    plant.setCenter(x,y);
+    }
+
+    public void addToCanvas(CanvasWindow canvas) {
+        canvas.add(plant);
+    }
+
+    public void removeFromCanvas(CanvasWindow canvas) {
+        canvas.remove(plant);
+    }
 }

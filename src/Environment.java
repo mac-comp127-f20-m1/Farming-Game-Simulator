@@ -1,6 +1,7 @@
 
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.GraphicsObject;
+import edu.macalester.graphics.Point;
 import edu.macalester.graphics.Rectangle;
 
 import java.util.ArrayList;
@@ -28,6 +29,15 @@ public class Environment {
         lands.get(0).unlock();
         lands.get(1).unlock();
         lands.get(2).unlock();
+    }
+
+    public LandPlot getLandPlotAtPosition(Point point){
+        for (LandPlot landPlot : lands) {
+            if (landPlot.isInBounds(point)){
+                return landPlot;
+            }
+        }
+        return null;
     }
 
 

@@ -3,7 +3,9 @@ import java.util.List;
 
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.Image;
+import edu.macalester.graphics.Point;
 import edu.macalester.graphics.GraphicsGroup;
+
 
 
 public class Character {
@@ -37,10 +39,10 @@ public class Character {
      * @param canvas
      */
     public void plantApple(CanvasWindow canvas,double x, double y){ 
-        Apple apple = new Apple();
+        Plant apple = new Plant("apple.png", 10);
         apple.setPosition(x, y);
         plants.add(apple);
-        apple.addToCanvas(canvas);  
+        apple.addToCanvas(canvas);
         money=money-apple.getPrice();   
           
     }
@@ -49,7 +51,7 @@ public class Character {
      * Creates a new orange object
      */
     public void plantOrange(CanvasWindow canvas,double x, double y){
-        Orange orange = new Orange();
+        Plant orange = new Plant("orange.png", 15);
         orange.setPosition(x, y);
         plants.add(orange);
         orange.addToCanvas(canvas);
@@ -60,7 +62,7 @@ public class Character {
      * Creates a new potato object
      */
     public void plantPotato(CanvasWindow canvas,double x, double y){
-        Potato potato = new Potato();
+        Plant potato = new Plant("potato.png", 5);
         potato.setPosition(x, y);
         plants.add(potato);
         potato.addToCanvas(canvas);
@@ -72,16 +74,24 @@ public class Character {
      * Creates a new cabbage object
      */
     public void plantCabbage(CanvasWindow canvas,double x, double y){
-        Cabbage cabbage = new Cabbage();
+        Plant cabbage = new Plant("cabbage.png", 20);
         cabbage.setPosition(x, y);
         plants.add(cabbage);
         cabbage.addToCanvas(canvas);
         money=money-cabbage.getPrice();   
     }
 
+    // -----------------------
+
     public void addToCanvas(CanvasWindow canvas){
         canvas.add(this.pig);
     }
+
+    public void removeFromCanvas(CanvasWindow canvas){
+        canvas.remove(this.pig);
+    }
+
+    //------------------------
 
     public void moveX(double dx){
         pig.setX(pig.getX()+dx);
@@ -103,6 +113,10 @@ public class Character {
         return pig.getY();
     }
     
+    public Point getPosition() {
+        return pig.getPosition();
+    }
+
     //---------------------------
 
     public void canvasBounds(CanvasWindow canvas){
@@ -125,7 +139,6 @@ public class Character {
         }
     
     }
-    
 
     public void lockLandBounds(CanvasWindow canvas){
         
@@ -134,6 +147,8 @@ public class Character {
     public void ButtonsBounds(CanvasWindow canvas){
         
     }
+
+   
 
     // public void updatePosition(double dt, CanvasWindow canvas, List<GraphicsObject> brick, Paddle paddle) {
     //     newx = getX() + dt * velocityx;
