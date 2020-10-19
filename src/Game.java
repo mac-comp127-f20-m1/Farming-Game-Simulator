@@ -5,6 +5,8 @@ import edu.macalester.graphics.Image;
 import edu.macalester.graphics.events.Key;
 import edu.macalester.graphics.events.KeyboardEvent;
 import java.awt.Color;
+import java.util.Scanner;
+
 import edu.macalester.graphics.Rectangle;
 import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.ui.Button;
@@ -15,11 +17,13 @@ public class Game {
     private Character character;
     private Environment environment;
     private Rectangle timeButton;
+    private Button button;
+    private Scanner scanner;
     private Rectangle moneyButton;
     private GraphicsText timeLabel = new GraphicsText();
     private GraphicsText moneyLabel = new GraphicsText();
 
-    private int days;
+    private int days = 1;
     GraphicsGroup graphics = new GraphicsGroup(0, 0);
 
 
@@ -39,8 +43,8 @@ public class Game {
         character.setCenter(250, 250);
         moneyButton(canvas);
         timeButton();
-        
-        
+        Button();
+
 
         canvas.add(timeButton);
         canvas.add(timeLabel);
@@ -48,7 +52,18 @@ public class Game {
         canvas.onKeyDown(event -> {
             moveCharacter(event);
             plant(event);
+            harvestByKey(event);
         });
+
+        canvas.draw();
+
+        scanner = new Scanner(System.in);
+        System.out.println("blah blah blah");
+        String input = scanner.next();
+        if (input=="Yes"){
+        skipDayMechanism();
+        }
+
     }
 
     public static void main(String[] args) {
@@ -57,19 +72,26 @@ public class Game {
 
     public void timeButton() {
         timeButton = new Rectangle(0, 0, 95, 40);
-        timeButton.setCenter(815, 120);
+        timeButton.setCenter(815, 150);
         timeButton.setFillColor(Color.RED);
-        timeLabel.setText("Next Day");
+        timeLabel.setText("Day: " + days);
         timeLabel.setFont(FontStyle.BOLD, 15);
         timeLabel.setFillColor(Color.WHITE);
-        timeLabel.setCenter(815, 120);
-
+        timeLabel.setCenter(815, 150);
     }
 
     public void Button(){
-        Button button=new Button("Skip Day");
-        button.setPosition(10,10);
+        button=new Button("Skip Day");
+        button.setCenter(815, 200);
         canvas.add(button);
+    }
+    
+    public void skipDayMechanism(){
+        for(Plant plant:character.getList()){
+            if (plant.maxSize()){
+                plant.growLarger();
+            }
+        }
     }
 
 
@@ -100,6 +122,20 @@ public class Game {
         character.addToCanvas(canvas);
     }
 
+    public void harvestByKey(KeyboardEvent event){
+       Plant plant= character.getPlantAtPosition(character.getPosition());  
+        if (plant == null){
+            return;
+        }
+        if (event.getKey() == Key.SPACE ) {
+            character.harvest(canvas,plant);
+            makeCharacterOnTop();
+            changeMoney();
+        }
+      
+
+    }
+
     public void plant(KeyboardEvent event) {
         double x = character.getX();
         double y = character.getY();
@@ -108,22 +144,22 @@ public class Game {
             return;
         }
 
-        if (event.getKey() == Key.Q && character.getMoney() >= 10) {
+        if (event.getKey() == Key.Q && character.getMoney() >= 10 && !landplot.isLocked()) {
             character.plantApple(canvas, x, y);
             makeCharacterOnTop();
             changeMoney();
         }
-        if (event.getKey() == Key.W && character.getMoney() >= 15) {
+        if (event.getKey() == Key.W && character.getMoney() >= 15 && !landplot.isLocked()) {
             character.plantOrange(canvas, x, y);
             makeCharacterOnTop();
             changeMoney();
         }
-        if (event.getKey() == Key.E && character.getMoney() >= 5) {
+        if (event.getKey() == Key.E && character.getMoney() >= 5 && !landplot.isLocked()) {
             character.plantPotato(canvas, x, y);
             makeCharacterOnTop();
             changeMoney();
         }
-        if (event.getKey() == Key.R && character.getMoney() >= 20) {
+        if (event.getKey() == Key.R && character.getMoney() >= 20 && !landplot.isLocked()) {
             character.plantCabbage(canvas, x, y);
             makeCharacterOnTop();
             changeMoney();

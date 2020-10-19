@@ -15,7 +15,10 @@ public class Character {
     private Image pig;
     List<Plant> plants=new ArrayList<>();
     private int money = 100;
-    
+  
+    public List<Plant> getList() {
+        return plants;
+    }
     public Character(){
         pig = new Image(0, 0, "pig.png");
         pig.setMaxHeight(100);
@@ -28,9 +31,22 @@ public class Character {
         return money;
     }
 
-    public void harvestApple(){
-        
+    public void harvest(CanvasWindow canvas, Plant plant){
+        plant.removeFromCanvas(canvas);
+        money+=  plant.getPrice()*2;
+        plants.remove(plant);   
     }
+
+  
+    public Plant getPlantAtPosition(Point point){
+        for (Plant plant : plants) {
+            if (plant.getImage().isInBounds(point)){
+                return plant;
+            }
+        }
+        return null;
+    }
+
 
     /**
      * Creates a new apple object and adds it to the canvas
