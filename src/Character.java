@@ -30,6 +30,10 @@ public class Character {
     public int getMoney(){
         return money;
     }
+    
+    public void subtractMoney(int subtractAmount){
+        money=money-subtractAmount;
+    }
 
     public void harvest(CanvasWindow canvas, Plant plant){
         plant.removeFromCanvas(canvas);

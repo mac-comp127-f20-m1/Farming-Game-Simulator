@@ -40,30 +40,13 @@ public class Environment {
         return null;
     }
 
-    
-
     public List<LandPlot> getLands() {
         return lands;
     }
-
 
     public void addToCanvas(CanvasWindow canvas) {
         for (LandPlot b : lands) {
             canvas.add(b);
         }
     }
-
-    public void setColor(LandPlot rec) {
-
-    }
-
-    // You might do something like this:
-
-    // public boolean canCharacterMoveTo(Point pos) {
-    //     if (pos is out of bounds) {
-    //         return false;
-    //     }
-    //     LandPlot land = getLandAt(pos);
-    //     return land == null || !land.isLocked();
-    // }
 }

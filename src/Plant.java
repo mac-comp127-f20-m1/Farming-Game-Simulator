@@ -31,15 +31,15 @@ public class Plant {
      * Makes the plant grow larger
      */
     public void growLarger() {
-        height = height*2;
-        width = width *2;
+        height = height*3;
+        width = width *3;
         plant.setMaxHeight(height);
         plant.setMaxWidth(width);
     }
 
 
     public boolean maxSize() {
-        if (width==20&height==40){
+        if (width == 45 && height == 90){
             return true;
         }else{
             return false;

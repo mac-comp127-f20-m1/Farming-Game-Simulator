@@ -22,10 +22,14 @@ public class Game {
     private Rectangle moneyButton;
     private GraphicsText timeLabel = new GraphicsText();
     private GraphicsText moneyLabel = new GraphicsText();
+    private int lockCounter = 0;
 
     private int days = 1;
     GraphicsGroup graphics = new GraphicsGroup(0, 0);
 
+    private boolean appleLock=true;
+    private boolean orangeLock=true;
+    private boolean cabbageLock=true;
 
     public Game() {
         canvas = new CanvasWindow("JRL Farm", 880, 930);
@@ -44,8 +48,6 @@ public class Game {
         moneyButton(canvas);
         timeButton();
         Button();
-
-
         canvas.add(timeButton);
         canvas.add(timeLabel);
 
@@ -54,16 +56,6 @@ public class Game {
             plant(event);
             harvestByKey(event);
         });
-
-        canvas.draw();
-
-        scanner = new Scanner(System.in);
-        System.out.println("blah blah blah");
-        String input = scanner.next();
-        if (input=="Yes"){
-        skipDayMechanism();
-        }
-
     }
 
     public static void main(String[] args) {
@@ -84,26 +76,55 @@ public class Game {
         button=new Button("Skip Day");
         button.setCenter(815, 200);
         canvas.add(button);
+        button.onClick(() -> skipDayMechanism());
     }
     
     public void skipDayMechanism(){
         for(Plant plant:character.getList()){
-            if (plant.maxSize()){
+            if (!plant.maxSize()){
                 plant.growLarger();
+            }   
+        }
+        if( days%10==0){
+            scanner = new Scanner(System.in);
+            System.out.println("Do you wanna unlock land(Yes/No)");
+            String unlockResponse= scanner.nextLine();
+            if(unlockResponse.equalsIgnoreCase("Yes") && character.getMoney()>=100&&lockCounter<=6){
+                environment.getLands().get(lockCounter+3).unlock();
+                lockCounter++;
+                character.subtractMoney(100);
+                changeMoney();
             }
         }
+        if ( days%5==0){
+            scanner = new Scanner(System.in);
+            System.out.println("Do you wanna unlock new seeds? \nApple = 50 coins (Enter A to unlock) \nOrange = 70 coins (Enter O to unlock)\nCabbage = 90 coins (Enter C to unlock)");
+            String unlockResponse= scanner.nextLine();
+            if(unlockResponse.equalsIgnoreCase("A") && character.getMoney()>=50&&appleLock){
+                appleLock=false;
+                character.subtractMoney(50);
+                changeMoney();
+            }
+            if(unlockResponse.equalsIgnoreCase("O") && character.getMoney()>=70&&orangeLock){
+                orangeLock=false;
+                character.subtractMoney(70);
+                changeMoney();
+            }
+            if(unlockResponse.equalsIgnoreCase("C") && character.getMoney()>=90&&cabbageLock){
+                cabbageLock=false;
+                character.subtractMoney(90);
+                changeMoney();
+            }
+        }
+        days++;
+        changeDay();
     }
 
+    public void changeDay() {
+        timeLabel.setText("Day: " + days);
+        timeLabel.setCenter(timeLabel.getCenter());
+    }
 
-    // public void skipDay(){
-    //     canvas.onMouseDown((event) -> {
-
-    //         if (event.getPosition().getX()> &&
-    //         event.getPosition().getX()< &&
-    //         event.getPosition().getY()> &&
-    //         event.getPosition().getY()< );    
-    //     });
-    // }
 
     public void moneyButton(CanvasWindow canvas) {
         moneyButton = new Rectangle(0, 0, 95, 40);
@@ -117,6 +138,11 @@ public class Game {
         canvas.add(moneyLabel);
     }
 
+    public void changeMoney() {
+        moneyLabel.setText("Coins: " + character.getMoney());
+        moneyLabel.setCenter(moneyButton.getCenter());
+    }
+
     public void makeCharacterOnTop(){
         character.removeFromCanvas(canvas);
         character.addToCanvas(canvas);
@@ -127,7 +153,7 @@ public class Game {
         if (plant == null){
             return;
         }
-        if (event.getKey() == Key.SPACE ) {
+        if (event.getKey() == Key.SPACE&&plant.maxSize() ) {
             character.harvest(canvas,plant);
             makeCharacterOnTop();
             changeMoney();
@@ -139,17 +165,18 @@ public class Game {
     public void plant(KeyboardEvent event) {
         double x = character.getX();
         double y = character.getY();
-        LandPlot landplot= environment.getLandPlotAtPosition(character.getPosition());  
+        LandPlot landplot= environment.getLandPlotAtPosition(character.getPosition());
+
         if (landplot == null){
             return;
         }
 
-        if (event.getKey() == Key.Q && character.getMoney() >= 10 && !landplot.isLocked()) {
+        if (event.getKey() == Key.Q && character.getMoney() >= 10 && !landplot.isLocked() && !appleLock) {
             character.plantApple(canvas, x, y);
             makeCharacterOnTop();
             changeMoney();
         }
-        if (event.getKey() == Key.W && character.getMoney() >= 15 && !landplot.isLocked()) {
+        if (event.getKey() == Key.W && character.getMoney() >= 15 && !landplot.isLocked() && !orangeLock) {
             character.plantOrange(canvas, x, y);
             makeCharacterOnTop();
             changeMoney();
@@ -159,17 +186,11 @@ public class Game {
             makeCharacterOnTop();
             changeMoney();
         }
-        if (event.getKey() == Key.R && character.getMoney() >= 20 && !landplot.isLocked()) {
+        if (event.getKey() == Key.R && character.getMoney() >= 20 && !landplot.isLocked() && !cabbageLock) {
             character.plantCabbage(canvas, x, y);
             makeCharacterOnTop();
             changeMoney();
         }
-    }
-
-    public void changeMoney() {
-        moneyLabel.setText("Coins: " + character.getMoney());
-        System.out.println("money" + character.getMoney());
-        moneyLabel.setCenter(moneyButton.getCenter());
     }
 
     public void moveCharacter(KeyboardEvent event) {
