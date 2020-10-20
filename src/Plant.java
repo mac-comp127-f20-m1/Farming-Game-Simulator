@@ -21,8 +21,6 @@ public class Plant {
         plant.setRotation(Math.random()*30-15);
     }
 
- 
-
   public Image getImage() {
     return plant;
   }
@@ -35,8 +33,9 @@ public class Plant {
         width = width *3;
         plant.setMaxHeight(height);
         plant.setMaxWidth(width);
+      
+        
     }
-
 
     public boolean maxSize() {
         if (width == 45 && height == 90){
@@ -50,6 +49,7 @@ public class Plant {
     public int getPrice() {
         return price;
     }
+    
 
     public void setPosition(double x,double y){
     plant.setCenter(x,y);

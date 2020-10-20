@@ -5,6 +5,8 @@ import java.awt.Color;
 public class LandPlot extends GraphicsGroup {
     private Rectangle rec;
     private boolean locked;
+    private int maximumPlants = 9;
+    private int cnt=0;
 
     public LandPlot(double x, double y, double width, double height) {
         setPosition(x, y);
@@ -13,6 +15,22 @@ public class LandPlot extends GraphicsGroup {
         rec.setStrokeWidth(5);
         lock();
         add(rec);
+    }
+
+    public int getMaximumPlants(){
+        return maximumPlants;
+    }
+
+    public int getCnt(){
+        return cnt;
+    }
+
+    public void plusOne(){
+       cnt++;
+    }
+
+    public void minusOne(){
+        cnt--;
     }
 
     public boolean isLocked() {
