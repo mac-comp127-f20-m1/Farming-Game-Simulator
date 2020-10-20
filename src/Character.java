@@ -7,7 +7,11 @@ import edu.macalester.graphics.Point;
 import edu.macalester.graphics.GraphicsGroup;
 
 
-
+/**
+ * Lien, Jaylynn, and Russell
+ * Paul helped us.
+ * This class created the character and include the method for currency and character' actions
+ */
 public class Character {
     // private final GraphicsGroup graphics;
     // private double speed;

@@ -11,7 +11,13 @@ import edu.macalester.graphics.Rectangle;
 import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.ui.Button;
 
-
+/**
+ * 
+ * This class creates and runs the game!
+ * JRL Farming Simulator.
+ * Created by: Jaylynn Rodriguez, Russell Ni, and Lien Lian
+ * 
+ */
 public class Game {
     private CanvasWindow canvas;
     private Character character;
@@ -72,6 +78,8 @@ public class Game {
         new Game();
     }
 
+    /** This creates a rectangle which informs the user of what day it is.
+    */
     public void timeButton() {
         timeButton = new Rectangle(0, 0, 95, 40);
         timeButton.setCenter(815, 150);
@@ -82,6 +90,9 @@ public class Game {
         timeLabel.setCenter(815, 150);
     }
 
+    /**
+     * This creates a clickable button called 'Skip Day' which allows users to move on to the next day in the game.
+     */
     public void Button() {
         button = new Button("Skip Day");
         button.setCenter(815, 200);
@@ -89,6 +100,7 @@ public class Game {
         button.onClick(() -> skipDayMechanism());
     }
 
+    /**This method grows plants and asks several different questions depending on what day it is in the game. */
     public void skipDayMechanism() {
         for (Plant plant : character.getList()) {
             if (!plant.maxSize()) {
@@ -102,6 +114,7 @@ public class Game {
         changeDay();
     }
 
+    /**This method asks the player if they'd like to unlock a new piece of land. They are only asked if they can afford it.*/
     public void askAboutLand() {
         if (days % 10 == 0) {
             scanner = new Scanner(System.in);
@@ -122,6 +135,7 @@ public class Game {
         }
     }
 
+    /**This method asks the user if they'd like to unlock new plants. */
     public void askAboutPlant() {
         if (days % 5 == 0) {
             scanner = new Scanner(System.in);
@@ -166,12 +180,13 @@ public class Game {
         }
     }
 
+    /**This method updates the graphical text to the current day in-game */
     public void changeDay() {
         timeLabel.setText("Day: " + days);
         timeLabel.setCenter(timeLabel.getCenter());
     }
 
-
+    /**This method creates a rectangle with graphical text that informs the user of how much money they have. */
     public void moneyButton(CanvasWindow canvas) {
         moneyButton = new Rectangle(0, 0, 95, 40);
         moneyButton.setCenter(815, 80);
@@ -184,16 +199,19 @@ public class Game {
         canvas.add(moneyLabel);
     }
 
+    /**This method grows plants and asks several different questions depending on what day it is in the game. */
     public void changeMoney() {
         moneyLabel.setText("Coins: " + character.getMoney());
         moneyLabel.setCenter(moneyButton.getCenter());
     }
 
+    /**This method makes sure that the character is on top of all the objects on screen. */
     public void makeCharacterOnTop() {
         character.removeFromCanvas(canvas);
         character.addToCanvas(canvas);
     }
 
+    /**This method allows a player to harvest plants by pressing the space bar*/
     public void harvestByKey(KeyboardEvent event) {
         Plant plant = character.getPlantAtPosition(character.getPosition());
         if (plant == null) {
@@ -207,6 +225,10 @@ public class Game {
         }
     }
 
+    /**This method allows the user to plant crops by pressing different keys. A crop can only be planted
+     * if it is unlocked. if they have not reached the maximum number of plants for a landplot, and if
+     * they can afford it.
+    */
     public void plant(KeyboardEvent event) {
         double x = character.getX();
         double y = character.getY();
@@ -259,7 +281,11 @@ public class Game {
         }
     }
 
-
+/**This method moves the character around on the screen according to the arrow keys.
+ * 
+ * @param event
+ * 
+*/
     public void moveCharacter(KeyboardEvent event) {
         if (event.getKey() == Key.UP_ARROW) {
             character.moveY(-20);
