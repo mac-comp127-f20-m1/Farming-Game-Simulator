@@ -2,11 +2,12 @@ import edu.macalester.graphics.GraphicsGroup;
 import edu.macalester.graphics.Rectangle;
 import java.awt.Color;
 
+/**This class controls the appearance and lock status of the landplots in the game. */
 public class LandPlot extends GraphicsGroup {
     private Rectangle rec;
     private boolean locked;
     private int maximumPlants = 9;
-    private int cnt=0;
+    private int cnt = 0;
 
     public LandPlot(double x, double y, double width, double height) {
         setPosition(x, y);
@@ -17,31 +18,42 @@ public class LandPlot extends GraphicsGroup {
         add(rec);
     }
 
-    public int getMaximumPlants(){
+    public int getMaximumPlants() {
         return maximumPlants;
     }
 
-    public int getCnt(){
+    public int getCnt() {
         return cnt;
     }
 
-    public void plusOne(){
-       cnt++;
+    public void plusOne() {
+        cnt++;
     }
 
-    public void minusOne(){
+    public void minusOne() {
         cnt--;
     }
 
+    /**
+     * This method checks if a landplot is locked or not.
+     * 
+     * @return boolean, locked
+     */
     public boolean isLocked() {
         return locked;
     }
 
+    /**
+     * This method changes the lock status of the landplot to locked, making the border red.
+     */
     public void lock() {
         locked = true;
         rec.setStrokeColor(Color.red);
     }
 
+    /**
+     * This method changes the lock status of the landplot to unlocked, making the border white.
+     */
     public void unlock() {
         locked = false;
         rec.setStrokeColor(Color.white);

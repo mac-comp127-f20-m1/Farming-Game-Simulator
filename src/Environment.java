@@ -1,19 +1,21 @@
-
 import edu.macalester.graphics.CanvasWindow;
-import edu.macalester.graphics.GraphicsObject;
 import edu.macalester.graphics.Point;
-import edu.macalester.graphics.Rectangle;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.awt.Color;
 
-
+/**
+ * This class positions all of the landplots onto the screen, setting up the visual environment for
+ * the game. It functions mainly as a landplot manager.
+ */
 public class Environment {
     private double landPlotSize = 200;
     private int row = 3, buffer = 20;
     private List<LandPlot> lands = new ArrayList<LandPlot>();
 
+    /**
+     * Positions all the landplots on the screen in even rows and columns, leaving the first three plots unlocked.
+     */
     public Environment() {
         for (int j = 0; j < row; j++) {
 
@@ -31,9 +33,9 @@ public class Environment {
         lands.get(2).unlock();
     }
 
-    public LandPlot getLandPlotAtPosition(Point point){
+    public LandPlot getLandPlotAtPosition(Point point) {
         for (LandPlot landPlot : lands) {
-            if (landPlot.isInBounds(point)){
+            if (landPlot.isInBounds(point)) {
                 return landPlot;
             }
         }

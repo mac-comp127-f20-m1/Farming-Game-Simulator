@@ -23,16 +23,16 @@ public class Game {
     private Character character;
     private Environment environment;
     private Rectangle timeButton;
-    private Button button;
+    private Button button; // clickable skip day button
     private Scanner scanner;
     private Rectangle moneyButton;
     private GraphicsText timeLabel = new GraphicsText();
     private GraphicsText moneyLabel = new GraphicsText();
-    private int lockCounter = 0;
-    LandPlot landplot;
+    private int lockCounter = 0; //keeps track of how many landplots have been unlocked
+    private LandPlot landplot;
 
     private int days = 1;
-    GraphicsGroup graphics = new GraphicsGroup(0, 0);
+    private GraphicsGroup graphics = new GraphicsGroup(0, 0);
 
     private boolean appleLock = true;
     private boolean orangeLock = true;
@@ -92,6 +92,7 @@ public class Game {
 
     /**
      * This creates a clickable button called 'Skip Day' which allows users to move on to the next day in the game.
+     * 
      */
     public void Button() {
         button = new Button("Skip Day");
@@ -107,14 +108,17 @@ public class Game {
                 plant.growLarger();
             }
         }
-
         askAboutLand();
         askAboutPlant();
         days++;
         changeDay();
     }
 
-    /**This method asks the player if they'd like to unlock a new piece of land. They are only asked if they can afford it.*/
+    /**
+     * This method asks the player if they'd like to unlock a new piece of land.
+     * The question only pops up if they have the money to buy land,
+     * and it will stop popping up entirely when there is no more land to unlock (check lockCounter)
+     * */
     public void askAboutLand() {
         if (days % 10 == 0) {
             scanner = new Scanner(System.in);
@@ -135,9 +139,15 @@ public class Game {
         }
     }
 
-    /**This method asks the user if they'd like to unlock new plants. */
+    /**
+     * This method asks the user if they'd like to unlock new plants.
+     * The question occurs every five days.
+     */
     public void askAboutPlant() {
-        if (days % 5 == 0) {
+        if(!appleLock && !orangeLock && !cabbageLock){
+            return;
+        }
+        else if(days % 5 == 0) {
             scanner = new Scanner(System.in);
             System.out.println(
                 "Do you wanna unlock new seeds? \nApple = 50 coins (Enter A to unlock) \nOrange = 70 coins (Enter O to unlock)\nCabbage = 90 coins (Enter C to unlock)");
@@ -199,7 +209,7 @@ public class Game {
         canvas.add(moneyLabel);
     }
 
-    /**This method grows plants and asks several different questions depending on what day it is in the game. */
+    /**This method updates the graphical text to the current amount of money the character has after buying/selling. */
     public void changeMoney() {
         moneyLabel.setText("Coins: " + character.getMoney());
         moneyLabel.setCenter(moneyButton.getCenter());
@@ -225,9 +235,11 @@ public class Game {
         }
     }
 
-    /**This method allows the user to plant crops by pressing different keys. A crop can only be planted
+    /**
+     * This method allows the user to plant crops by pressing different keys. A crop can only be planted
      * if it is unlocked. if they have not reached the maximum number of plants for a landplot, and if
      * they can afford it.
+     * @param event
     */
     public void plant(KeyboardEvent event) {
         double x = character.getX();
@@ -281,11 +293,11 @@ public class Game {
         }
     }
 
-/**This method moves the character around on the screen according to the arrow keys.
- * 
- * @param event
- * 
-*/
+    /**This method moves the character around on the screen according to the arrow keys.
+     * 
+     * @param event
+     * 
+    */
     public void moveCharacter(KeyboardEvent event) {
         if (event.getKey() == Key.UP_ARROW) {
             character.moveY(-20);
