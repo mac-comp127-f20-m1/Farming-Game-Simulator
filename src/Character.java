@@ -107,7 +107,6 @@ public class Character {
      */
     public void plantPotato(CanvasWindow canvas, double x, double y) {
         Plant potato = new Plant("potato.png", 5);
-        potato.getImage().setAnchor(potato.getWidth()/2,potato.getHeight());
         potato.setPosition(x, y);
         plants.add(potato);
         potato.addToCanvas(canvas);
